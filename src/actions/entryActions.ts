@@ -44,7 +44,7 @@ export async function createNewEntry(formData: FormData) {
 	const formEntry = zodData.data;
 
 	// create a directory for uploaded picture
-	await fs.mkdir("public/pictures", { recursive: true });
+	await fs.mkdir("/public/pictures", { recursive: true });
 
 	// if an iamge is submitted through the form
 	if (formEntry.image.name !== "undefined") {
