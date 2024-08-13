@@ -230,16 +230,20 @@ export default function EditEntryForm({
 				<div className="flex w-full justify-center items-center gap-5 flex-col md:flex-row">
 					<button
 						type="submit"
-						className="bg-blue-500 p-2 rounded-lg text-white w-5/6 md:w-1/3 text-lg hover:bg-blue-400 hover:shadow-md hover:scale-105 transition-all
-		        focus-visible:bg-blue-400 focus-visible:scale-105 focus-visible:shadow-md active:scale-95"
+						className="bg-transparent p-2 rounded-lg text-white w-5/6 border-white border-2 md:w-1/3 text-lg 
+						hover:bg-blue-400 hover:shadow-md hover:scale-105 
+		        	focus-visible:bg-blue-400 focus-visible:scale-105 focus-visible:shadow-md 
+					active:scale-95 transition-all"
 					>
 						Save Edit
 					</button>
 					<button
 						onClick={() => modalRef.current?.showModal()}
 						type="button"
-						className="bg-red-500 p-2 rounded-lg text-white w-5/6 md:w-1/3 text-lg hover:bg-red-400 hover:shadow-md hover:scale-105 transition-all
-		        focus-visible:bg-red-400 focus-visible:scale-105 focus-visible:shadow-md active:scale-95"
+						className="bg-transparent p-2 rounded-lg text-white w-5/6 border-white border-2 md:w-1/3 text-lg 
+						hover:bg-red-400 hover:shadow-md hover:scale-105 
+		        	focus-visible:bg-red-400 focus-visible:scale-105 focus-visible:shadow-md 
+					active:scale-95 transition-all"
 					>
 						Delete Entry
 					</button>

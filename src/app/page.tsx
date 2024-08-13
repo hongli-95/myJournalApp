@@ -5,8 +5,15 @@ import image2 from "../images/2.png";
 import image3 from "../images/3.png";
 import image4 from "../images/4.png";
 import image5 from "../images/5.png";
+import {
+	getKindeServerSession,
+	RegisterLink,
+} from "@kinde-oss/kinde-auth-nextjs/server";
 
 export default async function Home() {
+	const { isAuthenticated } = getKindeServerSession();
+	const isLoggedIn = await isAuthenticated();
+
 	return (
 		<main>
 			<div className="flex flex-col justify-center items-center w-full lg:flex-row mt-20 md:mt-12">
@@ -15,15 +22,26 @@ export default async function Home() {
 						Welcome to My Journal
 					</h1>
 					<h2 className="text-slate-800">Write down your mind.</h2>
-					<Link
-						href="/entries"
-						className="w-full lg:w-1/2 text-center border-2 border-white text-xl bg-transparent p-3 rounded-md text-white 
+					{isLoggedIn ? (
+						<Link
+							href="/entries"
+							className="w-full lg:w-1/2 text-center border-2 border-white text-xl bg-transparent p-3 rounded-md text-white 
 						hover:shadow-md hover:scale-105 hover:text-xl hover:bg-white hover:text-black
          				focus-visible:bg-white focus-visible:text-black focus-visible:shadow-md focus-visible:scale-105 
 						active:scale-95 transition-all"
-					>
-						Go to your Journal
-					</Link>
+						>
+							Go to your Journal
+						</Link>
+					) : (
+						<RegisterLink
+							className="w-full lg:w-1/2 text-center border-2 border-white text-xl bg-transparent p-3 rounded-md text-white 
+						hover:shadow-md hover:scale-105 hover:text-xl hover:bg-white hover:text-black
+         				focus-visible:bg-white focus-visible:text-black focus-visible:shadow-md focus-visible:scale-105 
+						active:scale-95 transition-all"
+						>
+							Join Today
+						</RegisterLink>
+					)}
 				</div>
 
 				<div

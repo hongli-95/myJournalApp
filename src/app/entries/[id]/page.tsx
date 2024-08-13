@@ -41,9 +41,9 @@ export default async function SingleEntry({
 				<div className="flex gap-4 mx-2">
 					<Link
 						href={`/entries/${id}/edit`}
-						className="bg-blue-500 text-white p-2 rounded-md 
-									hover:bg-red-400 hover:scale-105 
-									focus-visible:bg-red-400 focus-visible:scale-105 
+						className="bg-transparent text-white p-2 rounded-md border-2 border-white
+									hover:bg-white hover:text-black hover:scale-105 
+									focus-visible:bg-white focus-visible::text-black focus-visible:scale-105 
 									active:scale-95 active:hover:bg-red-400 transition-all"
 					>
 						Edit / Delete
@@ -81,7 +81,7 @@ export default async function SingleEntry({
 							src={entry?.imagePath as string}
 							height={400}
 							width={400}
-							className="rounded-md drop-shadow-md"
+							className="rounded-md drop-shadow-md border-2"
 						></Image>
 					)}
 				</div>

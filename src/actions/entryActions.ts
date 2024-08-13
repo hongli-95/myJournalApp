@@ -32,8 +32,6 @@ export async function createNewEntry(formData: FormData) {
 	if (!isLoggedIn) {
 		redirect("/api/auth/login");
 	}
-
-	//get user info from Kinde
 	const user = await getUser();
 
 	// use zod to safe parse the data submitted from the form
