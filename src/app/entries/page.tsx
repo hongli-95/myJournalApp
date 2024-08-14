@@ -6,7 +6,6 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 
 export default async function Entries(params: {
-	search: string;
 	searchParams: { search: string };
 }) {
 	// check if a user is logged in
