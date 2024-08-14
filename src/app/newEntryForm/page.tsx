@@ -4,9 +4,10 @@ import { createNewEntry } from "@/actions/entryActions";
 import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 export default function CreateNewEntry() {
+	// check if the user is logged in
 	const { isAuthenticated, isLoading } = useKindeBrowserClient();
 	if (!isLoading) {
 		if (!isAuthenticated) {
@@ -25,8 +26,10 @@ export default function CreateNewEntry() {
 				<div className="flex flex-row justify-center items-center w-full">
 					<Link
 						href="/entries"
-						className="mr-auto bg-slate-600 text-white p-2 rounded-md hover:bg-slate-400 hover:scale-105 
-                    focus-visible:bg-slate-400 focus-visible:scale-105 active:scale-95 transition-all"
+						className="mr-auto bg-slate-600 text-white p-2 rounded-md absolute top-3 left-3 z-50
+						hover:bg-slate-400 hover:scale-105 
+                    focus-visible:bg-slate-400 focus-visible:scale-105 
+					active:scale-95 transition-all"
 					>
 						Back
 					</Link>
@@ -44,85 +47,69 @@ export default function CreateNewEntry() {
 					required
 					autoComplete="off"
 					autoFocus
-					onInvalid={(e) =>
-						(e.target as HTMLInputElement).setCustomValidity("Give it a title?")
-					}
-					className="p-3 text-lg rounded-md bg-white w-5/6 bg-opacity-60 focus-visible:scale-[1.02] focus-visible:bg-opacity-90 transition-all"
+					// onInvalid={(e) =>
+					// 	(e.target as HTMLInputElement).setCustomValidity("Give it a title?")
+					// }
+					className="p-3 text-lg rounded-md bg-white w-5/6 bg-opacity-60 outline-none
+					focus-visible:scale-[1.02] focus-visible:bg-opacity-90 focus-visible:outline-2 focus-visible:outline-white
+					transition-all"
 				/>
 
 				{/* radio button group */}
 				<div className="flex flex-row gap-5 flex-wrap justify-center items-center w-5/6">
 					<div>
 						<label
-							htmlFor="happy"
+							htmlFor="fantastic"
 							className={`bg-white p-2 cursor-pointer rounded-md ${
-								mood === "happy" ? "bg-opacity-90" : "bg-opacity-60"
+								mood === "fantastic" ? "bg-opacity-90" : "bg-opacity-60"
 							}`}
 						>
 							<input
 								onClick={(e) => setMood((e.target as HTMLInputElement).value)}
 								type="radio"
 								name="mood"
-								id="happy"
-								value="happy"
+								id="fantastic"
+								value="fantastic"
 								defaultChecked
 								className="rounded-md cursor-pointer"
 							/>
-							<span className="p-2 text-lg">Happy &#128513;</span>
+							<span className="p-2 text-lg">Fantastic &#128513;</span>
 						</label>
 					</div>
 					<div>
 						<label
-							htmlFor="fine"
+							htmlFor="good"
 							className={`bg-white p-2 cursor-pointer rounded-md ${
-								mood === "fine" ? "bg-opacity-90" : "bg-opacity-60"
+								mood === "good" ? "bg-opacity-90" : "bg-opacity-60"
 							}`}
 						>
 							<input
 								onClick={(e) => setMood((e.target as HTMLInputElement).value)}
 								type="radio"
 								name="mood"
-								id="fine"
-								value="fine"
+								id="good"
+								value="good"
 								className="rounded-md cursor-pointer"
 							/>
-							<span className="p-2 text-lg">Fine &#128522;</span>
+							<span className="p-2 text-lg">Good &#128522;</span>
 						</label>
 					</div>
 					<div>
 						<label
-							htmlFor="meh"
+							htmlFor="alright"
 							className={`bg-white p-2 cursor-pointer rounded-md ${
-								mood === "meh" ? "bg-opacity-90" : "bg-opacity-60"
+								mood === "alright" ? "bg-opacity-90" : "bg-opacity-60"
 							}`}
 						>
 							<input
 								onClick={(e) => setMood((e.target as HTMLInputElement).value)}
 								type="radio"
 								name="mood"
-								id="meh"
-								value="meh"
+								id="alright"
+								value="alright"
 								className="rounded-md cursor-pointer"
 							/>
-							<span className="p-2 text-lg">Meh &#128529;</span>
-						</label>
-					</div>
-					<div>
-						<label
-							htmlFor="tolerable"
-							className={`bg-white p-2 cursor-pointer rounded-md ${
-								mood === "tolerable" ? "bg-opacity-90" : "bg-opacity-60"
-							}`}
-						>
-							<input
-								onClick={(e) => setMood((e.target as HTMLInputElement).value)}
-								type="radio"
-								name="mood"
-								id="tolerable"
-								value="tolerable"
-								className="rounded-md cursor-pointer"
-							/>
-							<span className="p-2 text-lg">Tolerable &#128533;</span>
+							<span className="p-2 text-lg">Alright &#128529;</span>
 						</label>
 					</div>
 					<div>
@@ -151,15 +138,17 @@ export default function CreateNewEntry() {
 					id="body"
 					placeholder="Put down your thoughts here..."
 					required
-					onInvalid={(e) =>
-						(e.target as HTMLTextAreaElement).setCustomValidity(
-							"Journal entry body cannot be empty."
-						)
-					}
-					className="p-3 text-lg rounded-md bg-white min-h-60 h-max bg-opacity-60 w-5/6 focus-visible:scale-[1.02] focus-visible:bg-opacity-90 transition-all"
+					// onInvalid={(e) =>
+					// 	(e.target as HTMLTextAreaElement).setCustomValidity(
+					// 		"Journal entry body cannot be empty."
+					// 	)
+					// }
+					className={`p-3 text-lg rounded-md bg-white h-auto md:min-h-60 min-h-96 bg-opacity-60 w-5/6 outline-none 
+					focus-visible:scale-[1.02] focus-visible:bg-opacity-90 focus-visible:outline-2 focus-visible:outline-white
+					transition-all`}
 				></textarea>
 
-				{/* input field for iamge */}
+				{/* input field for iamge
 				<div className="flex flex-col w-full justify-center items-center gap-2">
 					<label htmlFor="image" className="w-5/6 text-lg">
 						Upload a picture? (Optional. Only 1 picture):
@@ -170,7 +159,7 @@ export default function CreateNewEntry() {
 						multiple
 						className="p-3 text-lg rounded-md bg-white w-5/6 bg-opacity-60 focus-visible:scale-[1.02] focus-visible:bg-opacity-90 transition-all active:scale-[1.02]"
 					/>
-				</div>
+				</div> */}
 
 				<button
 					type="submit"

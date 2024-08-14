@@ -15,15 +15,18 @@ export default function EditEntryForm({
 	params: { id: string };
 }) {
 	useEffect(() => {
+		setIsLoading(true);
 		// returns a promise, hence .then
 		fetchEditEntry(id).then((data) => {
 			setEntry(data as Entry);
 			// ! is non-null assertion operator
 			setMood(data!.mood);
+			setIsLoading(false);
 		});
 	}, [id]);
 
 	// import the type Entry from prisma, and use it for typing state
+	const [isLoading, setIsLoading] = useState<boolean>(true);
 	const [entry, setEntry] = useState<Entry>();
 	const [mood, setMood] = useState<string>("");
 
@@ -94,90 +97,79 @@ export default function EditEntryForm({
 					id="title"
 					defaultValue={entry?.title}
 					required
+					disabled={isLoading ? true : false}
 					autoFocus
 					autoComplete="off"
 					onInvalid={(e) =>
 						(e.target as HTMLInputElement).setCustomValidity("Give it a title?")
 					}
-					className="p-3 text-lg rounded-md bg-white bg-opacity-60 w-5/6 focus-visible:scale-[1.02] focus-visible:bg-opacity-90 transition-all"
+					className={`p-3 text-lg rounded-md bg-white bg-opacity-60 w-5/6 ${
+						isLoading ? "bg-slate-400 bg-opacity-40" : ""
+					}
+						focus-visible:scale-[1.02] focus-visible:bg-opacity-90 
+						transition-all`}
 				/>
 
 				{/* radio button group */}
 				<div className="flex flex-row gap-3 flex-wrap justify-center items-center">
 					<div>
 						<label
-							htmlFor="happy"
+							htmlFor="fantastic"
 							className={`bg-white p-2 cursor-pointer rounded-md ${
-								mood === "happy" ? "bg-opacity-90" : "bg-opacity-60"
+								mood === "fantastic" ? "bg-opacity-90" : "bg-opacity-60"
 							}`}
 						>
 							<input
 								onChange={(e) => changeMood(e)}
 								type="radio"
 								name="mood"
-								id="happy"
-								value="happy"
-								checked={mood === "happy"}
+								id="fantastic"
+								value="fantastic"
+								checked={mood === "fantastic"}
+								disabled={isLoading ? true : false}
 								className="rounded-md cursor-pointer"
 							/>
-							<span className="p-2 text-lg">Happy &#128513;</span>
+							<span className="p-2 text-lg">Fantastic &#128513;</span>
 						</label>
 					</div>
 					<div>
 						<label
-							htmlFor="fine"
+							htmlFor="good"
 							className={`bg-white p-2 cursor-pointer rounded-md ${
-								mood === "fine" ? "bg-opacity-90" : "bg-opacity-60"
+								mood === "good" ? "bg-opacity-90" : "bg-opacity-60"
 							}`}
 						>
 							<input
 								onChange={(e) => changeMood(e)}
 								type="radio"
 								name="mood"
-								id="fine"
-								value="fine"
-								checked={mood === "fine"}
+								id="good"
+								value="good"
+								disabled={isLoading ? true : false}
+								checked={mood === "good"}
 								className="rounded-md cursor-pointer"
 							/>
-							<span className="p-2 text-lg">Fine &#128522;</span>
+							<span className="p-2 text-lg">Good &#128522;</span>
 						</label>
 					</div>
 					<div>
 						<label
-							htmlFor="meh"
+							htmlFor="alright"
 							className={`bg-white p-2 cursor-pointer rounded-md ${
-								mood === "meh" ? "bg-opacity-90" : "bg-opacity-60"
+								mood === "alright" ? "bg-opacity-90" : "bg-opacity-60"
 							}`}
 						>
 							<input
 								onChange={(e) => changeMood(e)}
 								type="radio"
 								name="mood"
-								id="meh"
-								value="meh"
-								checked={mood === "meh"}
+								id="alright"
+								value="alright"
+								disabled={isLoading ? true : false}
+								checked={mood === "alright"}
 								className="rounded-md cursor-pointer"
 							/>
-							<span className="p-2 text-lg">Meh &#128529;</span>
-						</label>
-					</div>
-					<div>
-						<label
-							htmlFor="tolerable"
-							className={`bg-white p-2 cursor-pointer rounded-md ${
-								mood === "tolerable" ? "bg-opacity-90" : "bg-opacity-60"
-							}`}
-						>
-							<input
-								onChange={(e) => changeMood(e)}
-								type="radio"
-								name="mood"
-								id="tolerable"
-								value="tolerable"
-								checked={mood === "tolerable"}
-								className="rounded-md cursor-pointer"
-							/>
-							<span className="p-2 text-lg">Tolerable &#128533;</span>
+							<span className="p-2 text-lg">Alright &#128529;</span>
 						</label>
 					</div>
 					<div>
@@ -193,6 +185,7 @@ export default function EditEntryForm({
 								name="mood"
 								id="awful"
 								value="awful"
+								disabled={isLoading ? true : false}
 								checked={mood === "awful"}
 								className="rounded-md cursor-pointer"
 							/>
@@ -206,30 +199,24 @@ export default function EditEntryForm({
 					name="body"
 					id="body"
 					defaultValue={entry?.body}
+					disabled={isLoading ? true : false}
 					required
 					onInvalid={(e) =>
 						(e.target as HTMLTextAreaElement).setCustomValidity(
 							"Journal entry body cannot be empty."
 						)
 					}
-					className="p-3 text-lg rounded-md bg-white min-h-60 h-max bg-opacity-60 w-5/6 focus-visible:scale-[1.02] focus-visible:bg-opacity-90 transition-all"
+					className={`p-3 text-lg rounded-md bg-white min-h-60 h-max bg-opacity-60 w-5/6 ${
+						isLoading ? "bg-slate-400 bg-opacity-40" : ""
+					}
+						focus-visible:scale-[1.02] focus-visible:bg-opacity-90 
+						transition-all`}
 				></textarea>
-
-				{/* input field for iamge */}
-				<div className="flex flex-col w-full justify-center items-center gap-2">
-					<label htmlFor="image" className="w-5/6 text-lg">
-						Upload picture (Only 1 picture):
-					</label>
-					<input
-						type="file"
-						name="image"
-						className="p-3 text-lg rounded-md bg-white w-5/6 bg-opacity-60 focus-visible:scale-[1.02] focus-visible:bg-opacity-90 transition-all active:scale-[1.02]"
-					/>
-				</div>
 
 				<div className="flex w-full justify-center items-center gap-5 flex-col md:flex-row">
 					<button
 						type="submit"
+						disabled={isLoading ? true : false}
 						className="bg-transparent p-2 rounded-lg text-white w-5/6 border-white border-2 md:w-1/3 text-lg 
 						hover:bg-blue-400 hover:shadow-md hover:scale-105 
 		        	focus-visible:bg-blue-400 focus-visible:scale-105 focus-visible:shadow-md 
@@ -240,6 +227,7 @@ export default function EditEntryForm({
 					<button
 						onClick={() => modalRef.current?.showModal()}
 						type="button"
+						disabled={isLoading ? true : false}
 						className="bg-transparent p-2 rounded-lg text-white w-5/6 border-white border-2 md:w-1/3 text-lg 
 						hover:bg-red-400 hover:shadow-md hover:scale-105 
 		        	focus-visible:bg-red-400 focus-visible:scale-105 focus-visible:shadow-md 

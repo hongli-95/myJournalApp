@@ -1,7 +1,6 @@
-import DateBlock from "@/components/DateBlock";
+import DateStripe from "@/components/DateStripe";
 import prisma from "@/lib/db";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
-import Image from "next/image";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
@@ -28,16 +27,20 @@ export default async function SingleEntry({
 			<div className="flex flex-row justify-center items-center w-full">
 				<Link
 					href="/entries"
-					className="mr-auto bg-slate-600 text-white p-2 rounded-md 
+					className="mr-auto bg-slate-600 text-white p-2 rounded-md absolute top-3 left-3 z-50
 							hover:bg-slate-400 hover:scale-105 
 							focus-visible:bg-slate-400 focus-visible:scale-105 
 							active:scale-95 transition-all"
 				>
 					Back
 				</Link>
+
+				{/* entry title */}
 				<div className="flex-1 flex justify-center">
-					<h1 className="text-xl font-bold">{entry?.title}</h1>
+					<h1 className="text-2xl font-semibold">{entry?.title}</h1>
 				</div>
+
+				{/* Edit / Delete button */}
 				<div className="flex gap-4 mx-2">
 					<Link
 						href={`/entries/${id}/edit`}
@@ -54,27 +57,24 @@ export default async function SingleEntry({
 			<div className="w-full md:w-5/6 whitespace-pre-wrap">
 				<div className="w-max bg-white bg-opacity-70 p-2 rounded-md my-1 text-lg cursor-default">
 					<span>
-						<DateBlock createdAt={entry?.createdAt} />
+						<DateStripe createdAt={entry?.createdAt} />
 					</span>
 					I am feeling
 					{/* i don't like these lol */}
-					{entry?.mood === "happy" ? (
+					{entry?.mood === "fantastic" ? (
 						<span> &#128513; {entry.mood}</span>
-					) : entry?.mood === "fine" ? (
+					) : entry?.mood === "good" ? (
 						<span> &#128522; {entry.mood}</span>
-					) : entry?.mood === "meh" ? (
+					) : entry?.mood === "alright" ? (
 						<span> &#128529; {entry.mood}</span>
-					) : entry?.mood === "tolerable" ? (
-						<span> &#128533; {entry.mood}</span>
 					) : entry?.mood === "awful" ? (
 						<span> &#128555; {entry.mood}</span>
-					) : (
-						"no"
-					)}{" "}
+					) : null}{" "}
+					{""}
 					today.
 				</div>
-				<p className="flex-1">{entry?.body}</p>
-				<div className="flex justify-center md:justify-end">
+				<p className="flex-1 leading-7">{entry?.body}</p>
+				{/* <div className="flex justify-center md:justify-end">
 					{entry?.imagePath && (
 						<Image
 							alt={`picture-${entry?.imagePath}`}
@@ -84,14 +84,14 @@ export default async function SingleEntry({
 							className="rounded-md drop-shadow-md border-2"
 						></Image>
 					)}
-				</div>
+				</div> */}
 
 				<div className="mb-auto self-start border-slate-500 border-t-[1px] mt-2">
 					{entry?.updatedAt.toString() !== entry?.createdAt.toString() ? (
 						<div className="text-slate-500 text-sm">
 							Last Updated:{" "}
 							<span className="inline-block">
-								<DateBlock updatedAt={entry?.updatedAt as Date} />
+								<DateStripe updatedAt={entry?.updatedAt as Date} />
 							</span>
 						</div>
 					) : null}

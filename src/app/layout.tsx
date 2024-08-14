@@ -6,7 +6,7 @@ import TopBar from "@/components/TopBar";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-	title: "Journaly",
+	title: "Journey Space",
 	description: "An attempt to build a journal web app",
 };
 
@@ -16,15 +16,14 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html
-			lang="en"
-			className="bg-gradient-to-br from-emerald-100 to-amber-600 h-svh"
-		>
-			<body className={`${inter.className} m-4`}>
-				<div>
+		<html lang="en" className="w-full h-full ">
+			<body
+				className={`${inter.className} bg-gradient-to-br from-emerald-100 to-amber-600 bg-no-repeat bg-fixed box-border antialiased`}
+			>
+				<div className="p-2">
 					<TopBar />
 				</div>
-				<div>{children}</div>
+				<div className="px-4">{children}</div>
 			</body>
 		</html>
 	);

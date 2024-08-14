@@ -15,66 +15,64 @@ export default async function Home() {
 	const isLoggedIn = await isAuthenticated();
 
 	return (
-		<main>
-			<div className="flex flex-col justify-center items-center w-full lg:flex-row mt-20 md:mt-12">
-				<div className="flex flex-col gap-4 justify-center items-center my-4 flex-1 z-10 relative">
-					<h1 className="text-2xl text-slate-800 drop-shadow-md">
-						Welcome to My Journal
-					</h1>
-					<h2 className="text-slate-800">Write down your mind.</h2>
-					{isLoggedIn ? (
-						<Link
-							href="/entries"
-							className="w-full lg:w-1/2 text-center border-2 border-white text-xl bg-transparent p-3 rounded-md text-white 
+		<main className="flex flex-col justify-center items-center w-full lg:flex-row mt-20 md:mt-12">
+			<div className="flex flex-col gap-4 justify-center items-center my-4 flex-1 z-10 relative lg:translate-y-12">
+				<h1 className="text-2xl text-slate-800 drop-shadow-md">
+					Welcome to Journey Space
+				</h1>
+				<h2 className="text-slate-800">Write down your mind.</h2>
+				{isLoggedIn ? (
+					<Link
+						href="/entries"
+						className="w-full lg:w-1/2 text-center border-2 border-white text-xl bg-transparent p-3 rounded-md text-white 
 						hover:shadow-md hover:scale-105 hover:text-xl hover:bg-white hover:text-black
          				focus-visible:bg-white focus-visible:text-black focus-visible:shadow-md focus-visible:scale-105 
 						active:scale-95 transition-all"
-						>
-							Go to your Journal
-						</Link>
-					) : (
-						<RegisterLink
-							className="w-full lg:w-1/2 text-center border-2 border-white text-xl bg-transparent p-3 rounded-md text-white 
+					>
+						Go to your Journal
+					</Link>
+				) : (
+					<RegisterLink
+						className="w-full lg:w-1/2 text-center border-2 border-white text-xl bg-transparent p-3 rounded-md text-white 
 						hover:shadow-md hover:scale-105 hover:text-xl hover:bg-white hover:text-black
          				focus-visible:bg-white focus-visible:text-black focus-visible:shadow-md focus-visible:scale-105 
 						active:scale-95 transition-all"
-						>
-							Join Today
-						</RegisterLink>
-					)}
-				</div>
+					>
+						Join Today
+					</RegisterLink>
+				)}
+			</div>
 
-				<div
-					className="flex flex-row gap-3 justify-center w-full
-				lg:w-1/2 md:w-5/6 translate-y-10 
-				lg:-translate-x-20"
-				>
-					<Image
-						src={image1}
-						alt="homepage-iamge1"
-						className="w-1/6 rounded-md shadow-lg -translate-y-2"
-					></Image>
-					<Image
-						src={image2}
-						alt="homepage-iamge2"
-						className="w-1/6 rounded-md shadow-lg translate-y-4"
-					></Image>
-					<Image
-						src={image3}
-						alt="homepage-iamge3"
-						className="w-1/6 rounded-md shadow-lg -translate-y-6"
-					></Image>
-					<Image
-						src={image4}
-						alt="homepage-iamge4"
-						className="w-1/6 rounded-md shadow-lg translate-y-8"
-					></Image>
-					<Image
-						src={image5}
-						alt="homepage-iamge5"
-						className="w-1/6 rounded-md shadow-lg -translate-y-10"
-					></Image>
-				</div>
+			<div
+				className="flex flex-row gap-3 justify-center w-full translate-y-10
+				md:w-5/6 
+				lg:w-1/2 lg:-translate-x-20 lg:translate-y-36"
+			>
+				<Image
+					src={image1}
+					alt="homepage-iamge1"
+					className="w-1/6 rounded-md shadow-lg -translate-y-2"
+				></Image>
+				<Image
+					src={image2}
+					alt="homepage-iamge2"
+					className="w-1/6 rounded-md shadow-lg translate-y-4"
+				></Image>
+				<Image
+					src={image3}
+					alt="homepage-iamge3"
+					className="w-1/6 rounded-md shadow-lg -translate-y-6"
+				></Image>
+				<Image
+					src={image4}
+					alt="homepage-iamge4"
+					className="w-1/6 rounded-md shadow-lg translate-y-8"
+				></Image>
+				<Image
+					src={image5}
+					alt="homepage-iamge5"
+					className="w-1/6 rounded-md shadow-lg -translate-y-10"
+				></Image>
 			</div>
 		</main>
 	);

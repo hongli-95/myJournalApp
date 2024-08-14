@@ -16,7 +16,7 @@ model Entry {
   title       String
   mood        String
   body        String
-  imagePath   String?
+  // imagePath   String?
   createdAt   DateTime @unique @default(now())
   updatedAt   DateTime @updatedAt
   KindeAuthId String
