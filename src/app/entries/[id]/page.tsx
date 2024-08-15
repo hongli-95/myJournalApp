@@ -1,4 +1,5 @@
 import DateStripe from "@/components/DateStripe";
+import { MotionDiv } from "@/components/MotionDiv";
 import prisma from "@/lib/db";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import Link from "next/link";
@@ -36,9 +37,13 @@ export default async function SingleEntry({
 				</Link>
 
 				{/* entry title */}
-				<div className="flex-1 flex justify-center">
+				<MotionDiv
+					initial={{ y: 20, opacity: 0 }}
+					animate={{ y: 0, opacity: 1 }}
+					className="flex-1 flex justify-center"
+				>
 					<h1 className="text-2xl font-semibold">{entry?.title}</h1>
-				</div>
+				</MotionDiv>
 
 				{/* Edit / Delete button */}
 				<div className="flex gap-4 mx-2">
@@ -55,7 +60,12 @@ export default async function SingleEntry({
 			</div>
 
 			<div className="w-full md:w-5/6 whitespace-pre-wrap">
-				<div className="w-max bg-white bg-opacity-70 p-2 rounded-md my-1 text-lg cursor-default">
+				<MotionDiv
+					initial={{ y: 20, opacity: 0 }}
+					animate={{ y: 0, opacity: 1 }}
+					transition={{ delay: 0.1 }}
+					className="w-max bg-white bg-opacity-70 p-2 rounded-md my-1 text-lg cursor-default"
+				>
 					<span>
 						<DateStripe createdAt={entry?.createdAt} />
 					</span>
@@ -72,8 +82,17 @@ export default async function SingleEntry({
 					) : null}{" "}
 					{""}
 					today.
-				</div>
-				<p className="flex-1 leading-7">{entry?.body}</p>
+				</MotionDiv>
+
+				<MotionDiv
+					initial={{ y: 20, opacity: 0 }}
+					animate={{ y: 0, opacity: 1 }}
+					transition={{ delay: 0.2 }}
+				>
+					{" "}
+					<p className="flex-1 leading-7">{entry?.body}</p>
+				</MotionDiv>
+
 				{/* <div className="flex justify-center md:justify-end">
 					{entry?.imagePath && (
 						<Image
@@ -86,7 +105,12 @@ export default async function SingleEntry({
 					)}
 				</div> */}
 
-				<div className="mb-auto self-start border-slate-500 border-t-[1px] mt-2">
+				<MotionDiv
+					initial={{ y: 20, opacity: 0 }}
+					animate={{ y: 0, opacity: 1 }}
+					transition={{ delay: 0.3 }}
+					className="mb-auto self-start border-slate-500 border-t-[1px] mt-2"
+				>
 					{entry?.updatedAt.toString() !== entry?.createdAt.toString() ? (
 						<div className="text-slate-500 text-sm">
 							Last Updated:{" "}
@@ -95,7 +119,7 @@ export default async function SingleEntry({
 							</span>
 						</div>
 					) : null}
-				</div>
+				</MotionDiv>
 			</div>
 		</div>
 	);

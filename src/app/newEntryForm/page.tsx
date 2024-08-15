@@ -1,6 +1,7 @@
 "use client";
 
 import { createNewEntry } from "@/actions/entryActions";
+import { MotionDiv } from "@/components/MotionDiv";
 import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 import Link from "next/link";
 import { redirect } from "next/navigation";
@@ -33,13 +34,24 @@ export default function CreateNewEntry() {
 					>
 						Back
 					</Link>
+				</div>
+
+				<MotionDiv
+					initial={{ y: 20, opacity: 0 }}
+					animate={{ y: 0, opacity: 1 }}
+				>
 					<h1 className="text-2xl flex-1 text-center">
 						Create New Journal Entry
 					</h1>
-				</div>
+				</MotionDiv>
 
 				{/* input field for title */}
-				<div className="flex flex-col w-5/6 gap-2">
+				<MotionDiv
+					initial={{ y: 20, opacity: 0 }}
+					animate={{ y: 0, opacity: 1 }}
+					transition={{ delay: 0.1 }}
+					className="flex flex-col w-5/6 gap-2"
+				>
 					<label htmlFor="" className="text-xl">
 						Title
 					</label>
@@ -58,10 +70,15 @@ export default function CreateNewEntry() {
 					focus-visible:scale-[1.02] focus-visible:bg-opacity-90 focus-visible:outline-2 focus-visible:outline-white
 					transition-all"
 					/>
-				</div>
+				</MotionDiv>
 
 				{/* radio button group */}
-				<div className="flex flex-row gap-5 flex-wrap justify-center items-center w-5/6">
+				<MotionDiv
+					initial={{ y: 20, opacity: 0 }}
+					animate={{ y: 0, opacity: 1 }}
+					transition={{ delay: 0.2 }}
+					className="flex flex-row gap-5 flex-wrap justify-center items-center w-5/6 my-4"
+				>
 					<div>
 						<label
 							htmlFor="fantastic"
@@ -135,10 +152,15 @@ export default function CreateNewEntry() {
 							<span className="p-2">Awful &#128555;</span>
 						</label>
 					</div>
-				</div>
+				</MotionDiv>
 
 				{/* Textarea for journal entry body */}
-				<div className="w-5/6 flex flex-col text-xl gap-2">
+				<MotionDiv
+					initial={{ y: 20, opacity: 0 }}
+					animate={{ y: 0, opacity: 1 }}
+					transition={{ delay: 0.3 }}
+					className="w-5/6 flex flex-col text-xl gap-2"
+				>
 					<label htmlFor="">Content</label>
 					<textarea
 						name="body"
@@ -154,7 +176,7 @@ export default function CreateNewEntry() {
 					focus-visible:scale-[1.02] focus-visible:bg-opacity-90 focus-visible:outline-2 focus-visible:outline-white
 					transition-all`}
 					></textarea>
-				</div>
+				</MotionDiv>
 
 				{/* input field for iamge
 				<div className="flex flex-col w-full justify-center items-center gap-2">
@@ -169,13 +191,20 @@ export default function CreateNewEntry() {
 					/>
 				</div> */}
 
-				<button
-					type="submit"
-					className="bg-emerald-500 p-2 rounded-lg text-white w-1/2 md:w-1/3 text-lg hover:bg-emerald-400 hover:shadow-md hover:scale-105 transition-all 
-                        focus-visible:bg-emerald-400 focus-visible:scale-105 focus-visible:shadow-md active:scale-95"
+				<MotionDiv
+					initial={{ y: 20, opacity: 0 }}
+					animate={{ y: 0, opacity: 1 }}
+					transition={{ delay: 0.4 }}
+					className="flex justify-center items-center w-full"
 				>
-					Create Journal Entry
-				</button>
+					<button
+						type="submit"
+						className="bg-emerald-500 p-2 rounded-lg text-white w-1/2 md:w-1/3 text-lg hover:bg-emerald-400 hover:shadow-md hover:scale-105 transition-all 
+                        focus-visible:bg-emerald-400 focus-visible:scale-105 focus-visible:shadow-md active:scale-95"
+					>
+						Create Journal Entry
+					</button>
+				</MotionDiv>
 			</form>
 		</>
 	);

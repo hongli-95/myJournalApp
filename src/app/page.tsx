@@ -9,6 +9,7 @@ import {
 	getKindeServerSession,
 	RegisterLink,
 } from "@kinde-oss/kinde-auth-nextjs/server";
+import { MotionDiv } from "@/components/MotionDiv";
 
 export default async function Home() {
 	const { isAuthenticated } = getKindeServerSession();
@@ -16,7 +17,11 @@ export default async function Home() {
 
 	return (
 		<main className="flex flex-col justify-center items-center w-full lg:flex-row mt-20 md:mt-12">
-			<div className="flex flex-col gap-4 justify-center items-center my-4 flex-1 z-10 relative lg:translate-y-12">
+			<MotionDiv
+				initial={{ opacity: 0, y: 30 }}
+				animate={{ opacity: 1, y: 0 }}
+				className="flex flex-col gap-4 justify-center items-center my-4 flex-1 z-10 relative lg:translate-y-12"
+			>
 				<h1 className="text-2xl text-slate-800 drop-shadow-md">
 					Welcome to Journey Space
 				</h1>
@@ -41,9 +46,12 @@ export default async function Home() {
 						Join Today
 					</RegisterLink>
 				)}
-			</div>
+			</MotionDiv>
 
-			<div
+			<MotionDiv
+				initial={{ opacity: 0 }}
+				animate={{ opacity: 1 }}
+				transition={{ delay: 0.3 }}
 				className="flex flex-row gap-3 justify-center w-full translate-y-10
 				md:w-5/6 
 				lg:w-1/2 lg:-translate-x-20 lg:translate-y-36"
@@ -73,7 +81,7 @@ export default async function Home() {
 					alt="homepage-iamge5"
 					className="w-1/6 rounded-md shadow-lg -translate-y-10"
 				></Image>
-			</div>
+			</MotionDiv>
 		</main>
 	);
 }

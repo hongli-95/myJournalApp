@@ -1,4 +1,5 @@
 import EntryCard from "@/components/EntryCard";
+import { MotionDiv } from "@/components/MotionDiv";
 import SearchBar from "@/components/SearchBar";
 import prisma from "@/lib/db";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
@@ -75,10 +76,14 @@ export default async function Entries(params: {
 				Back
 			</Link>
 
-			<div className="flex flex-row flex-wrap justify-center items-center">
+			<MotionDiv className="flex flex-row flex-wrap justify-center items-center">
 				{searchedEntries.length !== 0 ? (
 					// if searched
-					<div className="flex flex-col w-full md:flex-row flex-wrap">
+					<MotionDiv
+						initial={{ y: 20, opacity: 0 }}
+						animate={{ y: 0, opacity: 1 }}
+						className="flex flex-col w-full md:flex-row flex-wrap"
+					>
 						{searchedEntries.map((entry) => (
 							<div
 								key={entry.id}
@@ -94,7 +99,7 @@ export default async function Entries(params: {
 								</Link>
 							</div>
 						))}
-					</div>
+					</MotionDiv>
 				) : // if searched, but none matched
 				searchedEntries.length === 0 && params.searchParams.search ? (
 					<div className="flex flex-col justify-center items-center gap-4 self-center translate-y-1/2">
@@ -102,7 +107,11 @@ export default async function Entries(params: {
 					</div>
 				) : // if none searched, show all
 				searchedEntries.length === 0 && entries.length !== 0 ? (
-					<div className="flex flex-col w-full md:flex-row flex-wrap">
+					<MotionDiv
+						initial={{ y: 20, opacity: 0 }}
+						whileInView={{ y: 0, opacity: 1 }}
+						className="flex flex-col w-full md:flex-row flex-wrap"
+					>
 						{entries.map((entry) => (
 							<div
 								key={entry.id}
@@ -118,7 +127,7 @@ export default async function Entries(params: {
 								</Link>
 							</div>
 						))}
-					</div>
+					</MotionDiv>
 				) : (
 					<div className="flex flex-col justify-center items-center gap-4 self-center translate-y-1/2">
 						<h1 className="text-xl">You have no journal entries.</h1>
@@ -137,7 +146,8 @@ export default async function Entries(params: {
 						</h1>
 					</div>
 				)}
-			</div>
+			</MotionDiv>
+
 			{entries.length !== 0 ? (
 				<Link
 					href="/newEntryForm"

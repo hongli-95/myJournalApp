@@ -8,6 +8,7 @@ import {
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { Entry } from "@prisma/client";
+import { MotionDiv } from "@/components/MotionDiv";
 
 export default function EditEntryForm({
 	params: { id },
@@ -91,27 +92,42 @@ export default function EditEntryForm({
 				<input name="id" id="id" value={id} className="hidden" readOnly />
 
 				{/* input field for entry title */}
-				<input
-					type="text"
-					name="title"
-					id="title"
-					defaultValue={entry?.title}
-					required
-					disabled={isLoading ? true : false}
-					autoFocus
-					autoComplete="off"
-					onInvalid={(e) =>
-						(e.target as HTMLInputElement).setCustomValidity("Give it a title?")
-					}
-					className={`p-3 text-lg rounded-md bg-white bg-opacity-60 w-5/6 ${
-						isLoading ? "bg-slate-400 bg-opacity-40" : ""
-					}
-						focus-visible:scale-[1.02] focus-visible:bg-opacity-90 
+				<MotionDiv
+					initial={{ y: 20, opacity: 0 }}
+					animate={{ y: 0, opacity: 1 }}
+					className="flex flex-col w-5/6 gap-2"
+				>
+					<label htmlFor="" className="text-xl">
+						Title
+					</label>
+					<input
+						type="text"
+						name="title"
+						id="title"
+						defaultValue={entry?.title}
+						required
+						disabled={isLoading ? true : false}
+						autoFocus
+						autoComplete="off"
+						onInvalid={(e) =>
+							(e.target as HTMLInputElement).setCustomValidity(
+								"Give it a title?"
+							)
+						}
+						className={`p-3 text-lg rounded-md bg-white bg-opacity-60  ${
+							isLoading ? "bg-slate-400 bg-opacity-40" : ""
+						}
 						transition-all`}
-				/>
+					/>
+				</MotionDiv>
 
 				{/* radio button group */}
-				<div className="flex flex-row gap-3 flex-wrap justify-center items-center">
+				<MotionDiv
+					initial={{ y: 20, opacity: 0 }}
+					animate={{ y: 0, opacity: 1 }}
+					transition={{ delay: 0.1 }}
+					className="flex flex-row gap-3 flex-wrap justify-center items-center"
+				>
 					<div>
 						<label
 							htmlFor="fantastic"
@@ -192,28 +208,43 @@ export default function EditEntryForm({
 							<span className="p-2">Awful &#128555;</span>
 						</label>
 					</div>
-				</div>
+				</MotionDiv>
 
 				{/* Textarea for journal entry body */}
-				<textarea
-					name="body"
-					id="body"
-					defaultValue={entry?.body}
-					disabled={isLoading ? true : false}
-					required
-					onInvalid={(e) =>
-						(e.target as HTMLTextAreaElement).setCustomValidity(
-							"Journal entry body cannot be empty."
-						)
-					}
-					className={`p-3 text-lg rounded-md bg-white min-h-60 h-max bg-opacity-60 w-5/6 ${
-						isLoading ? "bg-slate-400 bg-opacity-40" : ""
-					}
+				<MotionDiv
+					initial={{ y: 20, opacity: 0 }}
+					animate={{ y: 0, opacity: 1 }}
+					transition={{ delay: 0.3 }}
+					className="w-5/6 flex flex-col gap-2"
+				>
+					<label htmlFor="" className="text-lg">
+						Content
+					</label>
+					<textarea
+						name="body"
+						id="body"
+						defaultValue={entry?.body}
+						disabled={isLoading ? true : false}
+						required
+						onInvalid={(e) =>
+							(e.target as HTMLTextAreaElement).setCustomValidity(
+								"Journal entry body cannot be empty."
+							)
+						}
+						className={`p-3 text-lg rounded-md bg-white min-h-96 h-max bg-opacity-60  ${
+							isLoading ? "bg-slate-400 bg-opacity-40" : ""
+						}
 						focus-visible:scale-[1.02] focus-visible:bg-opacity-90 
 						transition-all`}
-				></textarea>
+					></textarea>
+				</MotionDiv>
 
-				<div className="flex w-full justify-center items-center gap-5 flex-col md:flex-row">
+				<MotionDiv
+					initial={{ y: 20, opacity: 0 }}
+					animate={{ y: 0, opacity: 1 }}
+					transition={{ delay: 0.4 }}
+					className="flex w-full justify-center items-center gap-5 flex-col md:flex-row"
+				>
 					<button
 						type="submit"
 						disabled={isLoading ? true : false}
@@ -235,7 +266,7 @@ export default function EditEntryForm({
 					>
 						Delete Entry
 					</button>
-				</div>
+				</MotionDiv>
 			</form>
 		</div>
 	);
