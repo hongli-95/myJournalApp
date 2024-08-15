@@ -21,7 +21,7 @@ EntryCardPropsType) {
 	return (
 		<div
 			className="flex flex-col gap-2 border-2 border-white p-2 m-4 rounded-md min-h-full bg-white bg-opacity-30
-						group-hover:shadow-md group-hover:bg-opacity-70 group-hover:scale-105
+						group-hover:shadow-md group-hover:bg-opacity-70 group-hover:scale-105 group
 						group-focus-visible:shadow-md group-focus-visible:bg-opacity-70 group-focus-visible:scale-105 
 						transition-all"
 		>
@@ -31,7 +31,12 @@ EntryCardPropsType) {
 			</div>
 
 			{/* mood emoji */}
-			<div className="flex flex-row items-center gap-2 bg-white bg-opacity-80 rounded-md w-fit p-2">
+			<div
+				className="flex flex-row items-center gap-2 bg-white bg-opacity-80 rounded-md w-fit p-2 
+							group-hover:bg-slate-200 
+								group-focus-visible:bg-slate-200 
+								transition-all"
+			>
 				<DateBlock createdAt={createdAt} />
 
 				<div className="text-2xl">

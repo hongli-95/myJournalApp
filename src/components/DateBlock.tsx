@@ -14,10 +14,11 @@ export default function DateBlock({ createdAt }: DateBlockPropsType) {
 			<div className="font-sans font-semibold antialiased">
 				{weekDays[createdAt.getDay()]}
 			</div>
-			<div className="antialiased">
+			<div>
 				{numberFormatter.format(createdAt.getMonth())} /{" "}
 				{numberFormatter.format(createdAt.getDate())}
 			</div>
+			<div>{createdAt.getFullYear()}</div>
 		</div>
 	);
 }

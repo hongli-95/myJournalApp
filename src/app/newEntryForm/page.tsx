@@ -4,7 +4,7 @@ import { createNewEntry } from "@/actions/entryActions";
 import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { useRef, useState } from "react";
+import { useState } from "react";
 
 export default function CreateNewEntry() {
 	// check if the user is logged in
@@ -39,21 +39,26 @@ export default function CreateNewEntry() {
 				</div>
 
 				{/* input field for title */}
-				<input
-					type="text"
-					name="title"
-					id="title"
-					placeholder="Title here..."
-					required
-					autoComplete="off"
-					autoFocus
-					// onInvalid={(e) =>
-					// 	(e.target as HTMLInputElement).setCustomValidity("Give it a title?")
-					// }
-					className="p-3 text-lg rounded-md bg-white w-5/6 bg-opacity-60 outline-none
+				<div className="flex flex-col w-5/6 gap-2">
+					<label htmlFor="" className="text-xl">
+						Title
+					</label>
+					<input
+						type="text"
+						name="title"
+						id="title"
+						placeholder="Title here..."
+						required
+						autoComplete="off"
+						autoFocus
+						// onInvalid={(e) =>
+						// 	(e.target as HTMLInputElement).setCustomValidity("Give it a title?")
+						// }
+						className="p-3 text-lg rounded-md bg-white bg-opacity-60 outline-none
 					focus-visible:scale-[1.02] focus-visible:bg-opacity-90 focus-visible:outline-2 focus-visible:outline-white
 					transition-all"
-				/>
+					/>
+				</div>
 
 				{/* radio button group */}
 				<div className="flex flex-row gap-5 flex-wrap justify-center items-center w-5/6">
@@ -133,20 +138,23 @@ export default function CreateNewEntry() {
 				</div>
 
 				{/* Textarea for journal entry body */}
-				<textarea
-					name="body"
-					id="body"
-					placeholder="Put down your thoughts here..."
-					required
-					// onInvalid={(e) =>
-					// 	(e.target as HTMLTextAreaElement).setCustomValidity(
-					// 		"Journal entry body cannot be empty."
-					// 	)
-					// }
-					className={`p-3 text-lg rounded-md bg-white h-auto md:min-h-60 min-h-96 bg-opacity-60 w-5/6 outline-none 
+				<div className="w-5/6 flex flex-col text-xl gap-2">
+					<label htmlFor="">Content</label>
+					<textarea
+						name="body"
+						id="body"
+						placeholder="Put down your thoughts here..."
+						required
+						// onInvalid={(e) =>
+						// 	(e.target as HTMLTextAreaElement).setCustomValidity(
+						// 		"Journal entry body cannot be empty."
+						// 	)
+						// }
+						className={`p-3 text-lg rounded-md bg-white h-auto md:min-h-60 min-h-96 bg-opacity-60  outline-none 
 					focus-visible:scale-[1.02] focus-visible:bg-opacity-90 focus-visible:outline-2 focus-visible:outline-white
 					transition-all`}
-				></textarea>
+					></textarea>
+				</div>
 
 				{/* input field for iamge
 				<div className="flex flex-col w-full justify-center items-center gap-2">
