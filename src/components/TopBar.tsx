@@ -12,7 +12,7 @@ export default async function TopBar() {
 	const user = await getUser();
 
 	return (
-		<div className="flex flex-row flex-wrap gap-4 justify-end mx-3 z-50 relative">
+		<div className="flex flex-row flex-wrap gap-1 justify-end mx-3 z-50 relative">
 			{isLoggedIn ? (
 				<Link
 					href="/entries"
@@ -21,7 +21,7 @@ export default async function TopBar() {
 			focus-visible:border-white focus-visible:shadow-md 
 			active:scale-95 transition-all"
 				>
-					<p className="">{user?.email}</p>
+					<p className="text-sm">{user?.email}</p>
 				</Link>
 			) : (
 				<LoginLink
