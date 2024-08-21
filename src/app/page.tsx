@@ -101,15 +101,15 @@ export default async function Home() {
 					<MotionDiv
 						initial={{ opacity: 0 }}
 						animate={{ opacity: 1 }}
-						transition={{ delay: 0.1, ease: "easeInOut" }}
+						transition={{ delay: 0.1 }}
 					>
 						<h2 className="text-2xl font-semibold">Get started today.</h2>
 					</MotionDiv>
 
 					<MotionDiv
-						initial={{ opacity: 0 }}
-						whileInView={{ opacity: 1 }}
-						transition={{ delay: 0.1 }}
+						initial={{ opacity: 0, y: 10 }}
+						whileInView={{ opacity: 1, y: 0 }}
+						transition={{ delay: 0.2 }}
 						className="flex flex-row justify-start items-center gap-4 bg-white bg-opacity-60 p-4 rounded-lg w-5/6 
 										md:w-2/3
 										hover:bg-opacity-80 
@@ -131,7 +131,7 @@ export default async function Home() {
 					<MotionDiv
 						initial={{ opacity: 0, y: 10 }}
 						whileInView={{ opacity: 1, y: 0 }}
-						transition={{ delay: 0.2 }}
+						transition={{ delay: 0.3 }}
 						className="flex flex-row justify-start items-center gap-4 bg-white bg-opacity-60 p-4 rounded-lg w-5/6 
 										md:w-2/3
 										hover:bg-opacity-80 
@@ -154,7 +154,7 @@ export default async function Home() {
 					<MotionDiv
 						initial={{ opacity: 0, y: 10 }}
 						whileInView={{ opacity: 1, y: 0 }}
-						transition={{ delay: 0.3 }}
+						transition={{ delay: 0.4 }}
 						className="flex flex-row justify-start items-center gap-4 bg-white bg-opacity-60 p-4 rounded-lg w-5/6 
 										md:w-2/3
 										hover:bg-opacity-80 
