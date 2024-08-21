@@ -76,7 +76,7 @@ export default async function Entries(params: {
 				Back
 			</Link>
 
-			<MotionDiv className="flex flex-row flex-wrap justify-center items-center">
+			<div className="flex flex-row flex-wrap justify-center items-center">
 				{searchedEntries.length !== 0 ? (
 					// if searched
 					<MotionDiv
@@ -146,7 +146,7 @@ export default async function Entries(params: {
 						</h1>
 					</div>
 				)}
-			</MotionDiv>
+			</div>
 
 			{entries.length !== 0 ? (
 				<Link

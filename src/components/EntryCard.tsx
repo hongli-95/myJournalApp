@@ -33,8 +33,8 @@ EntryCardPropsType) {
 			{/* mood emoji */}
 			<div
 				className="flex flex-row items-center gap-2 bg-white bg-opacity-80 rounded-md w-fit p-2 
-							group-hover:bg-slate-200 
-								group-focus-visible:bg-slate-200 
+							group-hover:shadow-md 
+								group-focus-visible:shadow-md 
 								transition-all"
 			>
 				<DateBlock createdAt={createdAt} />

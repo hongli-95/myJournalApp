@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import TopBar from "@/components/TopBar";
+import Footer from "@/components/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,12 +19,11 @@ export default function RootLayout({
 	return (
 		<html lang="en" className="w-full h-full ">
 			<body
-				className={`${inter.className} bg-gradient-to-br from-emerald-100 to-amber-600 bg-no-repeat bg-fixed box-border antialiased`}
+				className={`${inter.className} h-svh flex flex-col bg-gradient-to-br from-emerald-100 to-amber-600 bg-no-repeat bg-fixed box-border antialiased`}
 			>
-				<div className="p-2">
-					<TopBar />
-				</div>
-				<div className="px-4">{children}</div>
+				<TopBar />
+				<div className="px-4 flex-1">{children}</div>
+				<Footer />
 			</body>
 		</html>
 	);
