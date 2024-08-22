@@ -56,7 +56,7 @@ export default async function Entries(params: {
 			{/* top row: title and search bar*/}
 			<div className="flex flex-col justify-center items-center md:flex-row">
 				<div className="flex-1 flex justify-center items-center relative">
-					<h1 className="text-2xl text-center text-slate-700 p-2 rounded-md">
+					<h1 className="text-2xl text-center text-white font-semibold p-2">
 						Your Journal
 					</h1>
 				</div>
@@ -103,7 +103,7 @@ export default async function Entries(params: {
 				) : // if searched, but none matched
 				searchedEntries.length === 0 && params.searchParams.search ? (
 					<div className="flex flex-col justify-center items-center gap-4 self-center translate-y-1/2">
-						<h1 className="text-xl">Nothing found...</h1>
+						<h1 className="text-xl text-white">Nothing found...</h1>
 					</div>
 				) : // if none searched, show all
 				searchedEntries.length === 0 && entries.length !== 0 ? (

@@ -24,7 +24,7 @@ export default async function SingleEntry({
 	});
 
 	return (
-		<div className="flex flex-col justify-center items-center gap-4 h-full">
+		<div className="flex flex-col justify-center items-center gap-4 h-full bg-white bg-opacity-20 rounded-md p-2">
 			<div className="flex flex-row justify-center items-center w-full">
 				<Link
 					href="/entries"
@@ -42,7 +42,7 @@ export default async function SingleEntry({
 					animate={{ y: 0, opacity: 1 }}
 					className="flex-1 flex justify-center"
 				>
-					<h1 className="text-2xl font-semibold">{entry?.title}</h1>
+					<h1 className="text-2xl font-semibold text-white">{entry?.title}</h1>
 				</MotionDiv>
 
 				{/* Edit / Delete button */}
@@ -90,7 +90,7 @@ export default async function SingleEntry({
 					transition={{ delay: 0.2 }}
 				>
 					{" "}
-					<p className="flex-1 leading-7">{entry?.body}</p>
+					<p className="flex-1 leading-7 text-white text-lg">{entry?.body}</p>
 				</MotionDiv>
 
 				{/* <div className="flex justify-center md:justify-end">

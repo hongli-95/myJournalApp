@@ -19,10 +19,10 @@ export default function RootLayout({
 	return (
 		<html lang="en" className="w-full h-full ">
 			<body
-				className={`${inter.className} h-svh flex flex-col bg-gradient-to-br from-emerald-100 to-amber-600 bg-no-repeat bg-fixed box-border antialiased`}
+				className={`${inter.className} h-svh flex flex-col bg-[url('../images/grass-field.jpg')] bg-cover bg-no-repeat bg-fixed antialiased`}
 			>
 				<TopBar />
-				<div className="px-4 flex-1">{children}</div>
+				<div className="px-4">{children}</div>
 				<Footer />
 			</body>
 		</html>
