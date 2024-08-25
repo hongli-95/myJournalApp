@@ -4,6 +4,7 @@ import prisma from "@/lib/db";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import parse from "html-react-parser";
 
 export default async function SingleEntry({
 	params: { id },
@@ -90,7 +91,9 @@ export default async function SingleEntry({
 					transition={{ delay: 0.2 }}
 				>
 					{" "}
-					<p className="flex-1 leading-7 text-white text-lg">{entry?.body}</p>
+					<div className="flex-1 leading-7 text-white text-lg">
+						{parse(entry?.body as string)}
+					</div>
 				</MotionDiv>
 
 				{/* <div className="flex justify-center md:justify-end">

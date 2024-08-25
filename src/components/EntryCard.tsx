@@ -1,5 +1,6 @@
 import DateBlock from "./DateBlock";
 import DateStripe from "./DateStripe";
+import parse from "html-react-parser";
 
 type EntryCardPropsType = {
 	title: string;
@@ -20,14 +21,15 @@ export default function EntryCard({
 EntryCardPropsType) {
 	return (
 		<div
-			className="flex flex-col gap-2 border-2 border-white p-2 m-4 rounded-md min-h-full text-white bg-white bg-opacity-20
+			className="flex flex-col gap-2 border-2 border-white rounded-md min-h-full text-white bg-white bg-opacity-20 p-2
 						group-hover:shadow-md group-hover:text-slate-700 group-hover:bg-opacity-70 group-hover:scale-105
-						group-focus-visible:shadow-md group-focus-visible:text-slate-700 group-focus-visible:bg-opacity-70 group-focus-visible:scale-105 
-						transition-all"
+							group-focus-visible:shadow-md group-focus-visible:text-slate-700 group-focus-visible:bg-opacity-70 group-focus-visible:scale-105 
+								transition-all"
 		>
-			<div className="flex flex-row w-full justify-center items-center">
-				<h2 className="text-lg flex-1 text-center line-clamp-1 p-1">{title}</h2>
-				{/* {imagePath && <IconImage className="w-8 h-8" />} */}
+			<div className="flex flex-row w-full justify-center items-center line-clamp-5 [overflow-wrap:anywhere] p-1">
+				<h2 className="text-lg flex-1 text-center line-clamp-1 p-1 ">
+					{title}
+				</h2>
 			</div>
 
 			{/* mood emoji */}
@@ -35,7 +37,7 @@ EntryCardPropsType) {
 				className="flex flex-row items-center gap-2 bg-white bg-opacity-30 rounded-md w-fit p-2 
 							group-hover:shadow-md 
 								group-focus-visible:shadow-md 
-								transition-all"
+									transition-all"
 			>
 				<DateBlock createdAt={createdAt} />
 
@@ -54,7 +56,9 @@ EntryCardPropsType) {
 				</div>
 			</div>
 
-			<p className="line-clamp-5 [overflow-wrap:anywhere] p-1">{`${body}`}</p>
+			<div className="line-clamp-5 [overflow-wrap:anywhere] p-1">
+				{parse(body)}
+			</div>
 
 			<div className="mt-auto">
 				<div

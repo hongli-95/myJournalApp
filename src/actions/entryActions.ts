@@ -40,7 +40,6 @@ export async function createNewEntry(formData: FormData) {
 	}
 
 	const formEntry = zodData.data;
-
 	// create a directory for uploaded picture
 	// await fs.mkdir("public/pictures", { recursive: true });
 

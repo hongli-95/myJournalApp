@@ -76,30 +76,24 @@ export default async function Entries(params: {
 				Back
 			</Link>
 
-			<div className="flex flex-row flex-wrap justify-center items-center">
+			<MotionDiv className="flex flex-row flex-wrap justify-between">
 				{searchedEntries.length !== 0 ? (
 					// if searched
-					<MotionDiv
-						initial={{ y: 20, opacity: 0 }}
-						animate={{ y: 0, opacity: 1 }}
-						className="flex flex-col w-full md:flex-row flex-wrap"
-					>
-						{searchedEntries.map((entry) => (
-							<div
-								key={entry.id}
-								className="my-3 w-full md:w-1/3 lg:w-1/4
+					searchedEntries.map((entry) => (
+						<div
+							key={entry.id}
+							className="my-3 w-full md:w-1/5 lg:w-1/4
 											active:scale-[0.99] transition-all "
+						>
+							<Link
+								title={entry.title}
+								href={`/entries/${entry.id}`}
+								className="group h-full w-full"
 							>
-								<Link
-									title={entry.title}
-									href={`/entries/${entry.id}`}
-									className="group h-full w-full"
-								>
-									<EntryCard {...entry} />
-								</Link>
-							</div>
-						))}
-					</MotionDiv>
+								<EntryCard {...entry} />
+							</Link>
+						</div>
+					))
 				) : // if searched, but none matched
 				searchedEntries.length === 0 && params.searchParams.search ? (
 					<div className="flex flex-col justify-center items-center gap-4 self-center translate-y-1/2">
@@ -107,27 +101,21 @@ export default async function Entries(params: {
 					</div>
 				) : // if none searched, show all
 				searchedEntries.length === 0 && entries.length !== 0 ? (
-					<MotionDiv
-						initial={{ y: 20, opacity: 0 }}
-						whileInView={{ y: 0, opacity: 1 }}
-						className="flex flex-col w-full md:flex-row flex-wrap"
-					>
-						{entries.map((entry) => (
-							<div
-								key={entry.id}
-								className="my-3 w-full md:w-1/3 lg:w-1/4
+					entries.map((entry) => (
+						<div
+							key={entry.id}
+							className="my-3 w-full md:w-[30%]
 											active:scale-[0.99] transition-all "
+						>
+							<Link
+								title={entry.title}
+								href={`/entries/${entry.id}`}
+								className="group h-full w-full"
 							>
-								<Link
-									title={entry.title}
-									href={`/entries/${entry.id}`}
-									className="group h-full w-full"
-								>
-									<EntryCard {...entry} />
-								</Link>
-							</div>
-						))}
-					</MotionDiv>
+								<EntryCard {...entry} />
+							</Link>
+						</div>
+					))
 				) : (
 					<div className="flex flex-col justify-center items-center gap-4 self-center translate-y-1/2">
 						<h1 className="text-xl">You have no journal entries.</h1>
@@ -146,15 +134,17 @@ export default async function Entries(params: {
 						</h1>
 					</div>
 				)}
-			</div>
+			</MotionDiv>
 
 			{entries.length !== 0 ? (
 				<Link
 					href="/newEntryForm"
-					className="border-2 border-white bg-transparent p-3 text-xl my-6 rounded-lg w-5/6 md:w-1/2 lg:w-1/3 self-center flex justify-center text-white 
-					hover:scale-105 hover:bg-emerald-400 hover:shadow-md 
-                    focus-visible:scale-105 focus-visible:bg-emerald-400 
-					active:scale-95 transition-all "
+					className="border-2 border-white bg-transparent p-3 text-xl my-6 rounded-lg w-5/6 self-center flex justify-center text-white text-center
+								md:w-1/2 
+									lg:w-1/3 
+										hover:scale-105 hover:bg-emerald-400 hover:shadow-md 
+                    						focus-visible:scale-105 focus-visible:bg-emerald-400 
+												active:scale-95 transition-all"
 				>
 					Create a New Entry
 				</Link>

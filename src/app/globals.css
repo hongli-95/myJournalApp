@@ -7,3 +7,9 @@ html {
 	margin: 0;
 	padding: 0;
 }
+
+blockquote {
+	border-left: 3px solid gray;
+	margin: 1rem 0;
+	padding-left: 1rem;
+}

@@ -22,7 +22,7 @@ export default function RootLayout({
 				className={`${inter.className} h-svh flex flex-col bg-[url('../images/grass-field.jpg')] bg-cover bg-no-repeat bg-fixed antialiased`}
 			>
 				<TopBar />
-				<div className="px-4">{children}</div>
+				<div className="px-4 mb-8">{children}</div>
 				<Footer />
 			</body>
 		</html>
