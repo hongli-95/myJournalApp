@@ -29,10 +29,10 @@ export default async function Home() {
 						whileInView={{ opacity: 1, y: 0 }}
 						className="flex flex-col gap-6 justify-center items-center my-4 flex-1 z-10 relative "
 					>
-						<h1 className="text-3xl text-white drop-shadow-md">
+						<h1 className="text-3xl text-white text-center drop-shadow-md">
 							Welcome to Journey Space
 						</h1>
-						<h2 className="text-white">
+						<h2 className="text-white ">
 							Capture Your Thoughts. Anywhere. Anytime.
 						</h2>
 						{isLoggedIn ? (
@@ -56,21 +56,6 @@ export default async function Home() {
 							</RegisterLink>
 						)}
 					</MotionDiv>
-
-					{/* <MotionDiv
-						initial={{ opacity: 0 }}
-						whileInView={{ opacity: 1 }}
-						transition={{ delay: 0.3 }}
-						className="flex flex-row gap-3 justify-center w-full translate-y-20 mb-20
-				md:w-5/6 
-				lg:w-1/2 lg:-translate-x-20 lg:translate-y-8"
-					>
-						<Image
-							src={homepageImage}
-							alt="homepage journal image"
-							className="w-[60%] rounded-lg"
-						></Image>
-					</MotionDiv> */}
 				</div>
 
 				{/* how it works section */}
@@ -79,9 +64,9 @@ export default async function Home() {
 						initial={{ opacity: 0 }}
 						animate={{ opacity: 1 }}
 						transition={{ delay: 0.1 }}
-						className="w-5/6 md:w-2/3"
+						className=""
 					>
-						<h2 className="text-2xl font-semibold text-white">
+						<h2 className="text-2xl font-semibold text-white text-center">
 							Get started today.
 						</h2>
 					</MotionDiv>
@@ -93,8 +78,6 @@ export default async function Home() {
 						className="flex flex-row justify-start items-center gap-4 bg-white bg-opacity-60 p-4 rounded-lg w-5/6 
 										md:w-2/3
 										hover:bg-opacity-80 
-										focus-visible:bg-opacity-80 
-										transition-all
 										"
 					>
 						<div className="flex flex-col justify-center items-center gap-2 p-2">
@@ -115,8 +98,7 @@ export default async function Home() {
 						className="flex flex-row justify-start items-center gap-4 bg-white bg-opacity-60 p-4 rounded-lg w-5/6 
 										md:w-2/3
 										hover:bg-opacity-80 
-										focus-visible:bg-opacity-80 
-										transition-all"
+										"
 					>
 						<div className="flex flex-col justify-center items-center gap-2 p-2">
 							<PencilLine
@@ -138,8 +120,7 @@ export default async function Home() {
 						className="flex flex-row justify-start items-center gap-4 bg-white bg-opacity-60 p-4 rounded-lg w-5/6 
 										md:w-2/3
 										hover:bg-opacity-80 
-										focus-visible:bg-opacity-80 
-										transition-all"
+										"
 					>
 						<div className="flex flex-col justify-center items-center gap-2 p-2">
 							<Lightbulb size={60} strokeWidth={2} absoluteStrokeWidth={true} />
@@ -152,7 +133,18 @@ export default async function Home() {
 				</div>
 
 				{/* features section */}
-				<div className="flex flex-col justify-center items-center p-4">
+				<div className="flex flex-col justify-center items-center p-4 gap-4">
+					<MotionDiv
+						initial={{ opacity: 0, y: 10 }}
+						whileInView={{ opacity: 1, y: 0 }}
+						transition={{ delay: 0.1 }}
+						className=""
+					>
+						<h2 className="text-2xl font-semibold text-white text-center">
+							Our Features.
+						</h2>
+					</MotionDiv>
+
 					<div
 						className="flex flex-col justify-center items-center w-full p-2 gap-10 text-center
 										md:flex-row md:justify-around"
@@ -161,7 +153,8 @@ export default async function Home() {
 							initial={{ opacity: 0, y: 10 }}
 							whileInView={{ opacity: 1, y: 0 }}
 							transition={{ delay: 0.1 }}
-							className="flex flex-col justify-center items-center w-full md:w-1/4 bg-white py-6 rounded-lg bg-opacity-60"
+							className="flex flex-col justify-center items-center w-full md:w-1/4 bg-white py-6 rounded-lg bg-opacity-60 
+											hover:bg-opacity-90"
 						>
 							<div className="self-center drop-shadow-md">
 								<NotebookPen
@@ -181,7 +174,8 @@ export default async function Home() {
 							initial={{ opacity: 0, y: 10 }}
 							whileInView={{ opacity: 1, y: 0 }}
 							transition={{ delay: 0.2 }}
-							className="flex flex-col justify-center items-center w-full md:w-1/4 bg-white py-6 rounded-lg bg-opacity-60"
+							className="flex flex-col justify-center items-center w-full md:w-1/4 bg-white py-6 rounded-lg bg-opacity-60
+											hover:bg-opacity-90"
 						>
 							<div className="self-center drop-shadow-md">
 								<FolderCheck
@@ -201,7 +195,8 @@ export default async function Home() {
 							initial={{ opacity: 0, y: 10 }}
 							whileInView={{ opacity: 1, y: 0 }}
 							transition={{ delay: 0.3 }}
-							className="flex flex-col justify-center items-center w-full md:w-1/4 bg-white py-6 rounded-lg bg-opacity-60"
+							className="flex flex-col justify-center items-center w-full md:w-1/4 bg-white py-6 rounded-lg bg-opacity-60
+											hover:bg-opacity-90"
 						>
 							<div className="self-center drop-shadow-md">
 								<KeyRound
