@@ -1,13 +1,16 @@
 import EntryCard from "@/components/EntryCard";
 import { MotionDiv } from "@/components/MotionDiv";
+import PaginationControl from "@/components/PaginationControl";
 import SearchBar from "@/components/SearchBar";
 import prisma from "@/lib/db";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
-export default async function Entries(params: {
-	searchParams: { search: string };
+export default async function Entries({
+	searchParams,
+}: {
+	searchParams: { search: string; page: string };
 }) {
 	// check if a user is logged in
 	const { isAuthenticated, getUser } = getKindeServerSession();
@@ -18,6 +21,13 @@ export default async function Entries(params: {
 
 	const user = await getUser();
 
+	//pagination
+	const page = searchParams.page ?? "1";
+	const perPage = 6;
+
+	const start = (Number(page) - 1) * perPage; // start from 0, to 6, to 12...
+	const end = start + perPage; // end on 6 perpage, 12, 18...
+
 	// fetch searched entries
 	// find entries that has the search term in their title OR body
 	const searchedEntries = await prisma.entry.findMany({
@@ -26,12 +36,12 @@ export default async function Entries(params: {
 			OR: [
 				{
 					body: {
-						contains: params.searchParams.search,
+						contains: searchParams.search,
 					},
 				},
 				{
 					title: {
-						contains: params.searchParams.search,
+						contains: searchParams.search,
 					},
 				},
 			],
@@ -50,6 +60,8 @@ export default async function Entries(params: {
 			createdAt: "asc",
 		},
 	});
+
+	const pagedEntries = entries.slice(start, end);
 
 	return (
 		<div className="flex flex-col gap-2 flex-wrap">
@@ -76,13 +88,17 @@ export default async function Entries(params: {
 				Back
 			</Link>
 
-			<MotionDiv className="flex flex-row flex-wrap justify-between">
+			<MotionDiv
+				initial={{ opacity: 0, y: 10 }}
+				animate={{ opacity: 1, y: 0 }}
+				className="flex flex-row flex-wrap justify-around gap-4"
+			>
 				{searchedEntries.length !== 0 ? (
 					// if searched
 					searchedEntries.map((entry) => (
 						<div
 							key={entry.id}
-							className="my-3 w-full md:w-1/5 lg:w-1/4
+							className="my-3 w-full md:w-[40%] lg:w-[30%]
 											active:scale-[0.99] transition-all "
 						>
 							<Link
@@ -95,16 +111,16 @@ export default async function Entries(params: {
 						</div>
 					))
 				) : // if searched, but none matched
-				searchedEntries.length === 0 && params.searchParams.search ? (
+				searchedEntries.length === 0 && searchParams.search ? (
 					<div className="flex flex-col justify-center items-center gap-4 self-center translate-y-1/2">
 						<h1 className="text-xl text-white">Nothing found...</h1>
 					</div>
 				) : // if none searched, show all
 				searchedEntries.length === 0 && entries.length !== 0 ? (
-					entries.map((entry) => (
+					pagedEntries.map((entry) => (
 						<div
 							key={entry.id}
-							className="my-3 w-full md:w-[30%]
+							className="my-3 w-full md:w-[40%] lg:w-[30%]
 											active:scale-[0.99] transition-all "
 						>
 							<Link
@@ -136,19 +152,33 @@ export default async function Entries(params: {
 				)}
 			</MotionDiv>
 
-			{entries.length !== 0 ? (
-				<Link
-					href="/newEntryForm"
-					className="border-2 border-white bg-transparent p-3 text-xl my-6 rounded-lg w-5/6 self-center flex justify-center text-white text-center
+			<MotionDiv initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
+				<PaginationControl
+					perPage={perPage}
+					hasPrevPage={start > 0}
+					hasNextPage={end < pagedEntries.length}
+				/>
+			</MotionDiv>
+
+			<MotionDiv
+				initial={{ opacity: 0, y: 10 }}
+				animate={{ opacity: 1, y: 0 }}
+				className="flex flex-row justify-center items-center"
+			>
+				{entries.length !== 0 ? (
+					<Link
+						href="/newEntryForm"
+						className="border-2 border-white bg-transparent p-3 text-xl my-6 rounded-lg w-5/6 self-center flex justify-center text-white text-center
 								md:w-1/2 
 									lg:w-1/3 
 										hover:scale-105 hover:bg-emerald-400 hover:shadow-md 
                     						focus-visible:scale-105 focus-visible:bg-emerald-400 
 												active:scale-95 transition-all"
-				>
-					Create a New Entry
-				</Link>
-			) : null}
+					>
+						Create a New Entry
+					</Link>
+				) : null}
+			</MotionDiv>
 		</div>
 	);
 }

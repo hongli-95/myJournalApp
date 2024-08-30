@@ -119,37 +119,6 @@ export async function updateEntry(formData: FormData) {
 		},
 	});
 
-	// check if the entry has an image
-	// let imagePath = currentEntry?.imagePath;
-	// if (formEntry.image.name !== "undefined" && formEntry.image.size > 0) {
-	// 	if (imagePath !== null) {
-	// 		// unlink image from the current entry, delete from file system
-	// 		await fs.unlink(`public${currentEntry?.imagePath as string}`);
-
-	// 		// create a new image path
-	// 		imagePath = `/pictures/${crypto.randomUUID()}-${formEntry.image?.name}`;
-
-	// 		// write the file into the system
-	// 		await fs.writeFile(
-	// 			`public${imagePath}`,
-	// 			// unknown type?
-	// 			Buffer.from((await formEntry.image?.arrayBuffer()) as any)
-	// 		);
-
-	// 		// if the entry does NOT have an image path, and is being added one, create a new path
-	// 	} else {
-	// 		// create an image path
-	// 		imagePath = `/pictures/${crypto.randomUUID()}-${formEntry.image?.name}`;
-
-	// 		// write the file into the system
-	// 		await fs.writeFile(
-	// 			`public${imagePath}`,
-	// 			// unknown type?
-	// 			Buffer.from((await formEntry.image?.arrayBuffer()) as any)
-	// 		);
-	// 	}
-	// }
-
 	// get the id from the formdata from a hidden input field
 
 	try {
@@ -173,16 +142,6 @@ export async function updateEntry(formData: FormData) {
 
 // delete entry
 export async function deleteEntry(id: string) {
-	// const result = await prisma.entry.findUnique({
-	// 	where: {
-	// 		id,
-	// 	},
-	// });
-
-	// if (result?.imagePath) {
-	// 	await fs.unlink(`public${(result as Entry).imagePath}`);
-	// }
-
 	try {
 		await prisma.entry.delete({
 			where: { id },

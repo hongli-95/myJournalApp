@@ -3,7 +3,7 @@ type DateBlockPropsType = {
 };
 
 export default function DateBlock({ createdAt }: DateBlockPropsType) {
-	const weekDays: string[] = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"];
+	const weekDays: string[] = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
 
 	const numberFormatter = new Intl.NumberFormat("en-US", {
 		minimumIntegerDigits: 2,
@@ -15,7 +15,7 @@ export default function DateBlock({ createdAt }: DateBlockPropsType) {
 				{weekDays[createdAt.getDay()]}
 			</div>
 			<div>
-				{numberFormatter.format(createdAt.getMonth())} /{" "}
+				{numberFormatter.format(createdAt.getMonth() + 1)} /{" "}
 				{numberFormatter.format(createdAt.getDate())}
 			</div>
 			<div>{createdAt.getFullYear()}</div>

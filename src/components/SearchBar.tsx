@@ -7,6 +7,8 @@ import { useDebounce } from "use-debounce";
 
 export default function SearchBar() {
 	const [searchTerm, setSearchTerm] = useState("");
+
+	// delay submit, wait until user finishes typing
 	const [query] = useDebounce(searchTerm, 300);
 	const router = useRouter();
 

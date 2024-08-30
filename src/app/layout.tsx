@@ -19,7 +19,7 @@ export default function RootLayout({
 	return (
 		<html lang="en" className="w-full h-full ">
 			<body
-				className={`${inter.className} h-svh flex flex-col bg-[url('../images/grass-field.jpg')] bg-cover bg-no-repeat bg-fixed antialiased`}
+				className={`${inter.className} h-svh flex flex-col bg-[url('../images/grass-field-min.jpg')] bg-cover bg-no-repeat bg-fixed antialiased`}
 			>
 				<TopBar />
 				<div className="px-4 mb-8">{children}</div>
