@@ -26,7 +26,7 @@ export default async function Entries({
 	const perPage = 6;
 
 	const start = (Number(page) - 1) * perPage; // start from 0, to 6, to 12...
-	const end = start + perPage; // end on 6 perpage, 12, 18...
+	const end = start + perPage; // end on [6] perpage, [12], [18]...
 
 	// fetch searched entries
 	// find entries that has the search term in their title OR body
@@ -78,6 +78,7 @@ export default async function Entries({
 			</div>
 
 			{/* back button */}
+
 			<Link
 				href="/"
 				className="bg-slate-600 text-white p-2 rounded-md absolute top-3 left-3 z-50
@@ -90,7 +91,7 @@ export default async function Entries({
 
 			<MotionDiv
 				initial={{ opacity: 0, y: 10 }}
-				animate={{ opacity: 1, y: 0 }}
+				whileInView={{ opacity: 1, y: 0 }}
 				className="flex flex-row flex-wrap justify-around gap-4"
 			>
 				{searchedEntries.length !== 0 ? (
@@ -152,13 +153,18 @@ export default async function Entries({
 				)}
 			</MotionDiv>
 
-			<MotionDiv initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
-				<PaginationControl
-					perPage={perPage}
-					hasPrevPage={start > 0}
-					hasNextPage={end < pagedEntries.length}
-				/>
-			</MotionDiv>
+			{!searchedEntries.length ? (
+				<MotionDiv
+					initial={{ opacity: 0, y: 10 }}
+					animate={{ opacity: 1, y: 0 }}
+				>
+					<PaginationControl
+						perPage={perPage}
+						hasPrevPage={start > 0}
+						hasNextPage={end < entries.length}
+					/>
+				</MotionDiv>
+			) : null}
 
 			<MotionDiv
 				initial={{ opacity: 0, y: 10 }}

@@ -9,7 +9,13 @@ html {
 }
 
 blockquote {
-	border-left: 3px solid gray;
+	border-left: 5px solid gray;
 	margin: 1rem 0;
 	padding-left: 1rem;
+}
+
+mark {
+	background-color: aquamarine;
+	border-radius: 5px;
+	padding: 3px;
 }

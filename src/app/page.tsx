@@ -51,7 +51,7 @@ export default async function Home() {
          				focus-visible:bg-white focus-visible:text-black focus-visible:shadow-md focus-visible:scale-105 
 						active:scale-95 transition-all"
 							>
-								Join Today
+								Start Journaling
 							</RegisterLink>
 						)}
 					</MotionDiv>

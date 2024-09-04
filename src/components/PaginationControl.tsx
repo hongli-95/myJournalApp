@@ -8,7 +8,11 @@ type PaginationControlPropsType = {
 	hasNextPage: boolean;
 };
 
-function PaginationControl({ perPage }: PaginationControlPropsType) {
+function PaginationControl({
+	perPage,
+	hasPrevPage,
+	hasNextPage,
+}: PaginationControlPropsType) {
 	const router = useRouter();
 	const searchParams = useSearchParams();
 
@@ -17,10 +21,15 @@ function PaginationControl({ perPage }: PaginationControlPropsType) {
 	return (
 		<div className="flex flex-row justify-center items-center text-white gap-8">
 			<button
+				disabled={!hasPrevPage}
 				onClick={() => {
 					router.push(`/entries/?page=${Number(page) - 1}`);
 				}}
-				className="bg-white bg-opacity-50 p-2 rounded-md hover:bg-opacity-80 hover:text-black focus-visible:bg-opacity-80 focus-visible:text-black transition-all"
+				className="bg-white bg-opacity-50 p-2 rounded-md
+								 hover:bg-opacity-80 hover:text-black 
+								 	focus-visible:bg-opacity-80 focus-visible:text-black 
+										disabled:text-slate-500 disabled:hover:bg-opacity-50
+											transition-all"
 			>{`<<`}</button>
 			<div>
 				<p>
@@ -28,10 +37,15 @@ function PaginationControl({ perPage }: PaginationControlPropsType) {
 				</p>
 			</div>
 			<button
+				disabled={!hasNextPage}
 				onClick={() => {
 					router.push(`/entries/?page=${Number(page) + 1}`);
 				}}
-				className="bg-white bg-opacity-50 p-2 rounded-md hover:text-black focus-visible:bg-opacity-80 focus-visible:text-black transition-all"
+				className="bg-white bg-opacity-50 p-2 rounded-md
+								hover:bg-opacity-80 hover:text-black 
+									focus-visible:bg-opacity-80 focus-visible:text-black
+										disabled:text-slate-500 disabled:hover:bg-opacity-50
+											transition-all"
 			>{`>>`}</button>
 		</div>
 	);
